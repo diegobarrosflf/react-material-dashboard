@@ -5,7 +5,11 @@ import { makeStyles } from '@material-ui/styles';
 import {
   Button,
   TextField,
-  Grid
+  Grid,
+  Select,
+  MenuItem,
+  FormControl,
+  InputLabel
 } from '@material-ui/core';
 
 import { SearchInput } from 'components';
@@ -56,12 +60,16 @@ const UsersToolbar = props => {
             />
           </Grid>
           <Grid item md={4}>
-            <TextField
-              className={classes.searchInput}
-              placeholder=""
-              label="Categoria:"
-              fullWidth
-            /></Grid>
+            <FormControl fullWidth>
+              <InputLabel>Categoria: </InputLabel>
+              <Select>
+                <MenuItem value="">Selecione...</MenuItem>
+                <MenuItem value={"TRABALHO"}>Trabalho</MenuItem>
+                <MenuItem value={"ESTUDOS"}>Estudos</MenuItem>
+                <MenuItem value={"OUTROS"}>Outros</MenuItem>
+              </Select>
+            </FormControl>
+          </Grid>
           <Grid item md={2}>
             <Button variant="contained" color="secondary">Adicionar</Button>
           </Grid>
