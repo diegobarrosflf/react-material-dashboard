@@ -50,6 +50,8 @@ const TarefasToolbar = props => {
       categoria: categoria
     }
     props.salvar(tarefa)
+    setDescricao('')
+    setCategoria('')
   }
 
   return (

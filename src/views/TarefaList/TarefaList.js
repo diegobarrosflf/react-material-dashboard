@@ -25,13 +25,14 @@ const TarefaList = () => {
     axios.post(apiUrl, tarefa, {
       headers: email
     }).then( response => {
-      console.log(response.data)
+      const novaTarefa = response.data
+      setTarefas([...tarefas, novaTarefa])
     }).catch(erro =>{
       console.log(erro)
     })
   }
 
-  const listarTarefas = () =>{
+  const listarTarefas = () => {
     axios.get(apiUrl, {
       headers:email
     }).then(response =>{
