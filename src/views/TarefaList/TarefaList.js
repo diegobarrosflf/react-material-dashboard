@@ -19,23 +19,23 @@ const TarefaList = () => {
   const [tarefas, setTarefas] = useState([]);
 
   const apiUrl = 'https://minhastarefas-api.herokuapp.com/tarefas'
-  const email = {'x-tenant-id':'diegogb89@gmail.com'}
+  const email = { 'x-tenant-id': 'diegogb89@gmail.com' }
 
   const salvar = (tarefa) => {
     axios.post(apiUrl, tarefa, {
       headers: email
-    }).then( response => {
+    }).then(response => {
       const novaTarefa = response.data
       setTarefas([...tarefas, novaTarefa])
-    }).catch(erro =>{
+    }).catch(erro => {
       console.log(erro)
     })
   }
 
   const listarTarefas = () => {
     axios.get(apiUrl, {
-      headers:email
-    }).then(response =>{
+      headers: email
+    }).then(response => {
       const listaDeTarefas = response.data
       console.log(listaDeTarefas)
       setTarefas(listaDeTarefas)
@@ -45,8 +45,16 @@ const TarefaList = () => {
   }
 
   const alterarStatus = (id) => {
-    axios.patch(`${apiUrl}/${id}`, null, {headers:email}).then(response =>{
-      console.log(response.status)
+    axios.patch(`${apiUrl}/${id}`, null, {
+      headers: email
+    }).then(response => {
+      const lista = [...tarefas]
+      lista.forEach(tarefa => {
+        if(tarefa.id === id){
+          tarefa.done = true;
+        }
+      })
+      setTarefas(lista)
     }).catch(erro => {
       console.log(erro)
     })
@@ -58,7 +66,7 @@ const TarefaList = () => {
 
   return (
     <div className={classes.root}>
-      <TarefasToolbar salvar={salvar}/>
+      <TarefasToolbar salvar={salvar} />
       <div className={classes.content}>
         <TarefasTable alterarStatus={alterarStatus} tarefas={tarefas} />
       </div>
