@@ -72,7 +72,7 @@ const TarefasTable = props => {
                       <TableCell>{tarefa.categoria}</TableCell>
                       <TableCell>{tarefa.done ? 'feito' : 'pendente'}</TableCell>
                       <TableCell>
-                        <IconButton color="secondary">
+                        <IconButton onClick={e => props.alterarStatus(tarefa.id)} color="secondary">
                           {tarefa.done ?
                             (
                               <DoneAllIcon />
